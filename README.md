@@ -1,13 +1,149 @@
-# 🚀 Sıralama Algoritmaları Görselleştiricisi (Sorting Algorithm Visualizer)
+<div align="center">
+
+# 🚀 Sorting Algorithm Visualizer | Sıralama Algoritmaları Görselleştiricisi
 
 ![Python Version](https://img.shields.io/badge/Python-3.8%2B-blue.svg)
 ![GUI Framework](https://img.shields.io/badge/GUI-Tkinter-brightgreen.svg)
 ![Tests](https://img.shields.io/badge/Tests-11%2F11%20Passed-success.svg)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey.svg)
 
-Bilgisayar bilimlerinde temel teşkil eden sıralama algoritmalarını etkileşimli, dinamik ve gerçek zamanlı animasyonlarla görselleştiren modern bir masaüstü uygulamasıdır. Algoritmaların çalışma adımlarını, karşılaştırmalarını, yer değiştirmelerini ve asimptotik zaman karmaşıklıklarını pratik bir şekilde inceleme imkânı sunar.
+[**English**](#-english) | [**Türkçe**](#-türkçe)
+
+</div>
 
 ---
+
+# 🌐 English
+
+An interactive, multi-threaded desktop application designed to visualize and benchmark fundamental sorting algorithms in real time. Features smooth animations, non-blocking UI execution, live operational metrics, and asymptotic time complexity comparison curves.
+
+## ✨ Key Features
+
+- **8 Sorting Algorithms Supported:** Bubble Sort, Insertion Sort, Selection Sort, Merge Sort, Quick Sort, Heap Sort, Shell Sort, and Counting Sort.
+- **Multi-Threaded Architecture:** Sorting runs on a dedicated worker daemon thread, ensuring the GUI remains responsive and smooth at 60 FPS without freezing.
+- **Interactive Controls:**
+  - ▶ **Start:** Executes the selected sorting algorithm.
+  - ⏸ **Pause / Resume:** Temporarily halts the sorting animation and resumes seamlessly.
+  - ⏹ **Stop / Reset:** Safely aborts running recursive algorithms and resets the array.
+- **Configurable Data Distributions:**
+  - 🎲 **Random:** Standard randomized distribution.
+  - 📈 **Nearly Sorted:** Ideal for testing $O(n)$ best-case behavior in adaptive algorithms.
+  - 📉 **Reversed:** Highlights worst-case quadratic behavior.
+  - 🔄 **Few Unique:** Demonstrates handling of duplicates and algorithm stability.
+- **Real-Time Operational Dashboard:**
+  - Live **Comparison Counter** (Comparisons).
+  - Live **Swap / Write Counter** (Swaps / Writes).
+  - Millisecond-precision **Elapsed Time** timer.
+- **Complexity Cards & Analysis Chart:**
+  - On-screen Big-O complexity indicators (Best, Average, Worst time, and Auxiliary space).
+  - Standalone popup window displaying theoretical curves for $O(n)$, $O(n \log n)$, and $O(n^2)$ mapped against current input size ($n$).
+- **Responsive Canvas:** Dynamically adjusts bar widths, spacing, and heights upon window resizing without clipping.
+
+---
+
+## 📊 Supported Algorithms & Complexity
+
+| Algorithm | Best Time | Average Time | Worst Time | Space Complexity | Stable |
+|---|---|---|---|---|---|
+| **Bubble Sort** | $O(n)$ | $O(n^2)$ | $O(n^2)$ | $O(1)$ | Yes |
+| **Insertion Sort** | $O(n)$ | $O(n^2)$ | $O(n^2)$ | $O(1)$ | Yes |
+| **Selection Sort** | $O(n^2)$ | $O(n^2)$ | $O(n^2)$ | $O(1)$ | No |
+| **Merge Sort** | $O(n \log n)$ | $O(n \log n)$ | $O(n \log n)$ | $O(n)$ | Yes |
+| **Quick Sort** | $O(n \log n)$ | $O(n \log n)$ | $O(n^2)$ | $O(\log n)$ | No |
+| **Heap Sort** | $O(n \log n)$ | $O(n \log n)$ | $O(n \log n)$ | $O(1)$ | No |
+| **Shell Sort** | $O(n \log n)$ | $O(n^{3/2})$ | $O(n^2)$ | $O(1)$ | No |
+| **Counting Sort** | $O(n + k)$ | $O(n + k)$ | $O(n + k)$ | $O(n + k)$ | Yes |
+
+---
+
+## 🎨 Color State Legend
+
+During visualization, the bars represent distinct algorithm operations:
+- 🔵 **Slate Blue (`#4299e1`):** Unsorted / Idle elements.
+- 🟡 **Yellow (`#ecc94b`):** Active comparison or scan probe.
+- 🔴 **Crimson Red (`#e53e3e`):** Swapping, shifting, or overwriting elements.
+- 🟠 **Orange (`#dd6b20`):** Quick Sort pivot or target placement slot.
+- 🟣 **Purple (`#9f7aea`):** Candidate minimum element (Selection Sort).
+- 🟢 **Emerald Green (`#48bb78`):** Fully sorted and placed in final position.
+
+---
+
+## 🛠️ Installation & Getting Started
+
+### Prerequisites
+- Python 3.8+ (Tkinter is included in standard Python installations).
+
+### 1. Install Dependencies (Optional / For Testing & Plotting)
+```bash
+pip install -r requirements.txt
+```
+
+### 2. Run the Visualizer
+```bash
+python display.py
+```
+
+---
+
+## 🧪 Automated Testing (Pytest)
+
+All algorithms are covered by automated unit tests validating edge cases (empty lists, single elements, pre-sorted data, reversed data, negative values, and large random datasets):
+
+```bash
+python -m pytest tests/test_algorithms.py -v
+```
+
+Output:
+```text
+tests/test_algorithms.py::test_comparison_sort_correctness[bubbleSort] PASSED
+tests/test_algorithms.py::test_comparison_sort_correctness[insertionSort] PASSED
+tests/test_algorithms.py::test_comparison_sort_correctness[selectionSort] PASSED
+tests/test_algorithms.py::test_comparison_sort_correctness[mergeSort] PASSED
+tests/test_algorithms.py::test_comparison_sort_correctness[quickSort] PASSED
+tests/test_algorithms.py::test_comparison_sort_correctness[heapSort] PASSED
+tests/test_algorithms.py::test_comparison_sort_correctness[shellSort] PASSED
+tests/test_algorithms.py::test_counting_sort_correctness PASSED
+tests/test_algorithms.py::test_quick_sort_legacy_signature PASSED
+tests/test_algorithms.py::test_metrics_tracking PASSED
+tests/test_algorithms.py::test_random_large_datasets PASSED
+============================= 11 passed in 0.48s ==============================
+```
+
+---
+
+## 📂 Project Structure
+
+```
+sortingAlgorithm/
+├── .gitignore                      # Local and cache exclusion rules
+├── README.md                       # Documentation (English & Turkish)
+├── requirements.txt                # Optional dependencies (pytest, numpy, matplotlib)
+├── display.py                      # Main GUI Application (Multi-threaded Tkinter)
+├── algorithmPush.py                # Central Algorithm Registry & Metadata
+├── img/                            # UI Icons & Assets
+├── src/
+│   ├── algorithms/                 # Sorting Algorithm Implementations
+│   │   ├── bubbleSort.py           # Optimized Bubble Sort (early exit)
+│   │   ├── insertionSort.py        # Step-by-step Insertion Sort
+│   │   ├── selectionSort.py        # Selection Sort with live scan indicator
+│   │   ├── mergeSort.py            # Merge Sort with full index range coverage
+│   │   ├── quickSort.py            # Quick Sort with dynamic color mapping
+│   │   ├── heapSort.py             # Binary Max-Heap Sort
+│   │   ├── shellSort.py            # Gap-sequence Shell Sort
+│   │   └── countingSort.py         # Distribution Counting Sort
+│   └── graf/
+│       └── grafics.py              # Big-O Asymptotic Complexity Graph
+└── tests/
+    └── test_algorithms.py          # Automated Pytest Suite
+```
+
+---
+
+<br>
+
+# 🇹🇷 Türkçe
+
+Bilgisayar bilimlerinde temel teşkil eden sıralama algoritmalarını etkileşimli, dinamik ve gerçek zamanlı animasyonlarla görselleştiren modern bir masaüstü uygulamasıdır. Algoritmaların çalışma adımlarını, karşılaştırmalarını, yer değiştirmelerini ve asimptotik zaman karmaşıklıklarını pratik bir şekilde inceleme imkânı sunar.
 
 ## ✨ Temel Özellikler
 
