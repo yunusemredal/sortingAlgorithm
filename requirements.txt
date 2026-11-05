@@ -1,0 +1,10 @@
+# Core requirements
+# Python 3.8+ built-in Tkinter is used for GUI
+
+# Development, Testing & Verification (CMMI VER)
+pytest>=7.0.0
+
+# Optional Scientific / Graphing libraries
+numpy>=1.20.0
+matplotlib>=3.5.0
+
